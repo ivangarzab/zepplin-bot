@@ -1,0 +1,5 @@
+# Core Discord bot library
+discord.py
+
+# For making HTTP requests (e.g., to external APIs)
+requests
