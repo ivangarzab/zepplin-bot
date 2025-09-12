@@ -3,8 +3,6 @@ Helper functions for creating Discord embeds
 """
 import discord
 from discord import Color
-from datetime import datetime
-import pytz
 
 COLORS = {
     "scout": Color.yellow(),
@@ -16,7 +14,7 @@ COLORS = {
     "base": Color.light_gray(),
 }
 
-def create_embed(title, description=None, color_key="base", fields=None, footer=None, timestamp=False):
+def create_embed(title, description=None, color_key="base", fields=None, footer=None):
     """
     Create a standardized Discord embed
     
@@ -26,7 +24,6 @@ def create_embed(title, description=None, color_key="base", fields=None, footer=
         color_key (str, optional): Key for the color in the COLORS dictionary. Defaults to "base".
         fields (list, optional): List of field dicts with name, value, and inline keys
         footer (str, optional): Footer text
-        timestamp (bool, optional): Whether to add a timestamp. Defaults to False.
     
     Returns:
         discord.Embed: The created embed
@@ -49,10 +46,5 @@ def create_embed(title, description=None, color_key="base", fields=None, footer=
     # Add footer if provided
     if footer:
         embed.set_footer(text=footer)
-    
-    # Add timestamp if requested
-    if timestamp:
-        sf_timezone = pytz.timezone('US/Pacific')
-        embed.timestamp = datetime.now(tz=sf_timezone)
     
     return embed
