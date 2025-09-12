@@ -34,6 +34,8 @@ print(f'~~~~~~Got Discord TOKEN successfully~~~~~~')
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix='/', intents=intents)
+# Setup commands from modules (do this once at startup)
+setup_commands(client)
 
 @tasks.loop(time=time(hour=0, minute=0))
 async def daily_message():
@@ -48,9 +50,6 @@ async def on_ready():
     print(f'~~~~~~We have logged in as {client.user}~~~~~~')
     if not daily_message.is_running():
         daily_message.start()
-    
-    # Setup commands from modules
-    setup_commands(client)
     
     # Sync slash commands
     try:
