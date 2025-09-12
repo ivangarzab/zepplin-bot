@@ -1,10 +1,10 @@
 # 🚀 Zepplin Bot
 
+A powerful Discord bot for **Shred Zepplin** alliance coordination in *Avatar: Realms Collide*. Built to streamline communication, coordinate attacks, and rally your alliance members for maximum tactical advantage.
+
 <div align="center">
   <img src="public/icon.png" alt="Zepplin Bot Icon" width="200"/>
 </div>
-
-A powerful Discord bot for **Shred Zepplin** alliance coordination in *Avatar: Realms Collide*. Built to streamline communication, coordinate attacks, and rally your alliance members for maximum tactical advantage.
 
 ## ✨ Features
 
