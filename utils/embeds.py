@@ -10,6 +10,8 @@ COLORS = {
     "scout": Color.yellow(),
     "attack": Color.red(),
     "defense": Color.blue(),
+    "rally": Color.dark_red(),
+    "stronghold": Color.dark_orange(),
     "invasion": Color.purple(),
     "base": Color.light_gray(),
 }
