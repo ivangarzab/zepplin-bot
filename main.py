@@ -41,7 +41,8 @@ async def daily_message():
 @client.event
 async def on_ready():
     print(f'~~~~~~We have logged in as {client.user}~~~~~~')
-    daily_message.start()
+    if not daily_message.is_running():
+        daily_message.start()
 
 @client.event
 async def on_message(message):
