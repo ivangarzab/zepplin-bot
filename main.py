@@ -1,15 +1,27 @@
 import os
 import random
 import discord
+from datetime import datetime, time
 from dotenv import load_dotenv
 from discord.ext import commands
 from discord.ext import tasks
 
-DEFAULT_CHANNEL = 1391787701954674719
+# DEFAULT_CHANNEL = 1391787701954674719 # some other channel...
+DEFAULT_CHANNEL = 1039326367973642363 # Chernobyl
 load_dotenv(override=True)
 TOKEN = os.getenv("ZEPPLIN_TOKEN")
 
 REACTIONS = ['⚡️', '👽', '🍄', '🌙', '🔥', '👾', '🦉', '🐺', '🍁']
+
+DAILY_MESSAGES = [
+    "Perfect day to bend all four elements! 🔥💨💧🪨",
+    "Welcome to a new day! 🌞",
+    "Today will be full of new constructions 🏗️",
+    "How many benders will you recruit today? 👥",
+    "⚖️ A great day to restore balance into the world!",
+    "🙏 Remember to donate to the alliance today!",
+
+]
 
 if not TOKEN:
     raise ValueError("TOKEN environment variable is not set.")
@@ -18,9 +30,18 @@ print(f'~~~~~~Got Discord TOKEN successfully~~~~~~')
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix='/', intents=intents)
 
+@tasks.loop(time=time(hour=0, minute=0))
+async def daily_message():
+    print(f"Daily alarm triggered at {datetime.now()}")
+    channel = client.get_channel(DEFAULT_CHANNEL)
+    if channel:
+        message = random.choice(DAILY_MESSAGES)
+        await channel.send(message)
+
 @client.event
 async def on_ready():
     print(f'~~~~~~We have logged in as {client.user}~~~~~~')
+    daily_message.start()
 
 @client.event
 async def on_message(message):
