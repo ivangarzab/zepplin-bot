@@ -95,7 +95,7 @@ A powerful Discord bot for **Shred Zepplin** alliance coordination in *Avatar: R
 
 ## ⚡️ Built For Shred Zepplin
 
-This bot is specifically designed for the **Shred Zepplin** alliance in *Avatar: Realms Collide*. Every feature is crafted to enhance tactical coordination and maintain alliance unity through the four nations.
+This bot is specifically designed for the **Shred Zepplin** alliance in _**Avatar: Realms Collide**_. Every feature is crafted to enhance tactical coordination and maintain alliance unity through the four nations.
 
 ---
 

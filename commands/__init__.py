@@ -4,7 +4,8 @@ Command modules for the Zepplin Bot
 
 from .reports import setup_report_commands
 from .rallies import setup_rally_commands
-from.invasion import setup_invasion_commands
+from .invasion import setup_invasion_commands
+from .info import setup_info_commands
 
 def setup_commands(client):
     """Set up all command modules"""
@@ -12,3 +13,4 @@ def setup_commands(client):
     setup_report_commands(client)
     setup_rally_commands(client)
     setup_invasion_commands(client)
+    setup_info_commands(client)
