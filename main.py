@@ -9,6 +9,8 @@ DEFAULT_CHANNEL = 1391787701954674719
 load_dotenv(override=True)
 TOKEN = os.getenv("ZEPPLIN_TOKEN")
 
+REACTIONS = ['⚡️', '👽', '🍄', '🌙', '🔥', '👾', '🦉', '🐺', '🍁']
+
 if not TOKEN:
     raise ValueError("TOKEN environment variable is not set.")
 print(f'~~~~~~Got Discord TOKEN successfully~~~~~~')
@@ -31,14 +33,16 @@ async def on_message(message):
 
     print(f'Got a new message=\'{message.content}\'\n\tguild={message.guild}\n\tauthor={message.author.name}')
 
-    #TODO: Implement message handling logic
+    # Add a reaction to message
+    if not message.content.startswith('!') and random.random() < 0.3:
+        await message.add_reaction(random.choice(REACTIONS))
 
     # This line is necessary to process commands within on_message()
     await client.process_commands(message) 
     
 @client.event
 async def on_member_join(member):
-    println(f"{member} joined the server")
+    print(f"{member} joined the server")
     channel = client.get_channel(DEFAULT_CHANNEL)
     if not channel:
         return
