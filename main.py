@@ -1,3 +1,7 @@
+"""
+The main file for the Discord bot.
+Handles bot initialization, event handling, and scheduling tasks.
+"""
 import os
 import random
 import discord
@@ -5,7 +9,7 @@ from datetime import datetime, time
 from dotenv import load_dotenv
 from discord.ext import commands
 from discord.ext import tasks
-from utils.embeds import create_embed
+from commands import setup_commands
 
 # DEFAULT_CHANNEL = 1391787701954674719 # some other channel...
 DEFAULT_CHANNEL = 1039326367973642363 # Chernobyl
@@ -45,6 +49,9 @@ async def on_ready():
     if not daily_message.is_running():
         daily_message.start()
     
+    # Setup commands from modules
+    setup_commands(client)
+    
     # Sync slash commands
     try:
         synced = await client.tree.sync()
@@ -77,39 +84,5 @@ async def on_member_join(member):
     if not channel:
         return
     await channel.send(f"Welcome, {member}, to the Shred Zepplin discord server!")
-
-@client.tree.command(name="report_attack", description="Report an attack on you, or any other alliance member")
-async def report_attack_command(
-    interaction: discord.Interaction,
-    attacker: str = None,
-    victim: str = None
-):
-    # Determine victim - use user's display name if not provided
-    victim_name = victim if victim else interaction.user.display_name
-    
-    # Build description based on available information
-    if attacker:
-        description = f"{victim_name} was attacked by {attacker}! Please assist them in defending our alliance!"
-    else:
-        description = f"{victim_name} was attacked by enemy forces! Please assist them in defending our alliance!"
-    
-    # Create embed with dynamic fields
-    embed_data = {
-        "title": "🗡️ We've been attacked!",
-        "description": description,
-        "color_key": "attack",
-        "fields": [
-            {"name": "Victim", "value": victim_name, "inline": True},
-            {"name": "Reported by", "value": interaction.user.display_name, "inline": True}
-        ]
-    }
-    
-    # Add attacker field only if provided
-    if attacker:
-        embed_data["fields"].insert(1, {"name": "Attacker", "value": attacker, "inline": True})
-    
-    embed = create_embed(**embed_data)
-    await interaction.response.send_message(embed=embed)
-    print(f"Sent 'report attack' command response. Victim: {victim_name}, Attacker: {attacker or 'Unknown'}")
 
 client.run(TOKEN) # Run the bot with your bot token
