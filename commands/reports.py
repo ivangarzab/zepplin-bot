@@ -3,11 +3,13 @@ Report commands for alliance coordination
 """
 import discord
 from utils.embeds import create_embed
+from utils.checks import bot_commands_only
 
 def setup_report_commands(client):
     """Set up all report-related commands"""
     
     @client.tree.command(name="report_attack", description="Report an attack on you, or any other alliance member")
+    @bot_commands_only()
     async def report_attack_command(
         interaction: discord.Interaction,
         attacker: str = None,
@@ -42,6 +44,7 @@ def setup_report_commands(client):
         print(f"Sent 'report attack' command response. Victim: {victim_name}, Attacker: {attacker or 'Unknown'}")
 
     @client.tree.command(name="report_scout", description="Report being scouted by enemy forces")
+    @bot_commands_only()
     async def report_scout_command(
         interaction: discord.Interaction,
         scout: str = None,

@@ -3,11 +3,13 @@ Info commands for bot help and guidance
 """
 import discord
 from utils.embeds import create_embed
+from utils.checks import bot_commands_only
 
 def setup_info_commands(client):
     """Set up all info-related commands"""
     
     @client.tree.command(name="help", description="Show all available commands and how to use them")
+    @bot_commands_only()
     async def help_command(interaction: discord.Interaction):
         embed_data = {
             "title": "🚀 Zepplin Bot Commands",

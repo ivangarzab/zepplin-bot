@@ -6,6 +6,7 @@ import discord
 import time
 from datetime import datetime, timedelta
 from utils.embeds import create_embed
+from utils.checks import bot_commands_only
 
 def setup_invasion_commands(client):
     """Set up all invasion-related commands"""
@@ -25,12 +26,14 @@ def setup_invasion_commands(client):
         return create_embed(**embed_data)
 
     @client.tree.command(name="invasion", description="Call all alliance members for a massive invasion")
+    @bot_commands_only()
     async def invasion_command(interaction: discord.Interaction):
         embed = create_invasion_embed(interaction.user.display_name)
         await interaction.response.send_message(embed=embed)
         print(f"Sent 'invasion' command response. Initiated by: {interaction.user.display_name}")
 
     @client.tree.command(name="schedule_invasion", description="Schedule an invasion to begin in X minutes")
+    @bot_commands_only()
     async def schedule_invasion_command(
         interaction: discord.Interaction,
         minutes: int

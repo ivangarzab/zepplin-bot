@@ -3,11 +3,13 @@ Rally commands for alliance coordination
 """
 import discord
 from utils.embeds import create_embed
+from utils.checks import bot_commands_only
 
 def setup_rally_commands(client):
     """Set up all rally-related commands"""
     
     @client.tree.command(name="rally_leader", description="Call for alliance members to rally against a target")
+    @bot_commands_only()
     async def rally_leader_command(
         interaction: discord.Interaction,
         target: str
@@ -27,6 +29,7 @@ def setup_rally_commands(client):
         print(f"Sent 'rally leader' command response. Target: {target}, Reporter: {interaction.user.display_name}")
 
     @client.tree.command(name="rally_stronghold", description="Call for alliance members to rally towards a stronghold")
+    @bot_commands_only()
     async def rally_stronghold_command(
         interaction: discord.Interaction,
         target: str
