@@ -11,8 +11,8 @@ from discord.ext import commands
 from discord.ext import tasks
 from commands import setup_commands
 
-# DEFAULT_CHANNEL = 1391787701954674719 # some other channel...
-DEFAULT_CHANNEL = 1039326367973642363 # Chernobyl
+DEFAULT_CHANNEL = 1391787701954674719 #general channel
+# DEFAULT_CHANNEL = 1039326367973642363 # Chernobyl
 load_dotenv(override=True)
 TOKEN = os.getenv("ZEPPLIN_TOKEN")
 
