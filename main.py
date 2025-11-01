@@ -16,7 +16,7 @@ DEFAULT_CHANNEL = 1391787701954674719 #general channel
 load_dotenv(override=True)
 TOKEN = os.getenv("ZEPPLIN_TOKEN")
 
-REACTIONS = ['⚡️', '👽', '🍄', '🌙', '🔥', '👾', '🦉', '🐺', '🍁']
+REACTIONS = ['⚡️', '💨', '🍄', '🌙', '🔥', '👾', '💧', '🐺', '🍁', '🪨']
 
 DAILY_MESSAGES = [
     "Perfect day to bend all four elements! 🔥💨💧🪨",
